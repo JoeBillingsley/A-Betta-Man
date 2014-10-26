@@ -75,9 +75,21 @@ public class OurFaceDetectionListener extends View implements Camera.FaceDetecti
 
             Log.i("Face coords=", "left=" +newRect.left + " right=" + newRect.right + " top=" + newRect.top + " bottom="+ newRect.bottom);
             //canvas.drawRect(left,top,right,bottom,p);
+
+            double rand = Math.random();
+            int pic;
+
+            if(rand < 0.33){
+                pic = R.drawable.wasd;
+            } else if (rand > 0.66) {
+                pic = R.drawable.zxzcv;
+            } else {
+                pic = R.drawable.qwer;
+            }
+
             Bitmap myBitmap = BitmapFactory.decodeResource(
                     getResources(),
-                    R.drawable.wasd);
+                    pic);
 
             canvas.drawBitmap(myBitmap,null,newRect,p);
         }
