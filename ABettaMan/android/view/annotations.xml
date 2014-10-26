@@ -1,0 +1,5 @@
+<root>
+    <item name='android.view.ViewGroup.LayoutParams FILL_PARENT'>
+        <annotation name='java.lang.annotation.Deprecated' />
+    </item>
+</root>
