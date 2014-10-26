@@ -1,0 +1,5 @@
+<root>
+    <item name='android.widget.AbsoluteLayout.LayoutParams'>
+        <annotation name='java.lang.annotation.Deprecated' />
+    </item>
+</root>
