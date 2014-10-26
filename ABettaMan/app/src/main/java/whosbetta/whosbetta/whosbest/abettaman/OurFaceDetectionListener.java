@@ -28,6 +28,8 @@ public class OurFaceDetectionListener extends View implements Camera.FaceDetecti
     private Context context;
     private Camera.Face[] faces = new Camera.Face[0];
 
+    public static boolean payment = false;
+
     public OurFaceDetectionListener(Context context) {
         super(context);
     }
@@ -79,12 +81,10 @@ public class OurFaceDetectionListener extends View implements Camera.FaceDetecti
             double rand = Math.random();
             int pic;
 
-            if(rand < 0.33){
-                pic = R.drawable.wasd;
-            } else if (rand > 0.66) {
-                pic = R.drawable.zxzcv;
-            } else {
+            if(payment){
                 pic = R.drawable.qwer;
+            } else {
+                pic = R.drawable.wasd;
             }
 
             Bitmap myBitmap = BitmapFactory.decodeResource(
