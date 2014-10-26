@@ -1,6 +1,8 @@
 package whosbetta.whosbetta.whosbest.abettaman;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -50,12 +52,36 @@ public class OurFaceDetectionListener extends View implements Camera.FaceDetecti
     }
 
     private void drawMyStuff(final Canvas canvas) {
-        if(faces.length > 0) {
-            Log.i(TAG, "Drawing...");
-            canvas.drawRGB(255, 128, 128);
+        Paint p = new Paint();
+
+        int vWidth = getWidth();
+        int vHeight = getHeight();
+
+        Log.i("Im here1", "faces length = " + faces.length);
+        for (int i = 0; i < faces.length; i++) {
+            Camera.Face f = faces[i];
+            Rect newRect = new Rect();
+            newRect.left = ( f.rect.left+1000) * vWidth/2000;
+            newRect.top  = (f.rect.top+1000) * vHeight/2000;
+            newRect.right = (f.rect.right+1000) * vWidth/2000;
+            newRect.bottom = (f.rect.bottom+1000) * vHeight/2000;
+
+            int increment = 20;
+
+            newRect.left -= increment;
+            newRect.right += increment;
+            newRect.top -= increment;
+            newRect.bottom += increment;
+
+            Log.i("Face coords=", "left=" +newRect.left + " right=" + newRect.right + " top=" + newRect.top + " bottom="+ newRect.bottom);
+            //canvas.drawRect(left,top,right,bottom,p);
+            Bitmap myBitmap = BitmapFactory.decodeResource(
+                    getResources(),
+                    R.drawable.wasd);
+
+            canvas.drawBitmap(myBitmap,null,newRect,p);
         }
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         drawMyStuff(canvas);
