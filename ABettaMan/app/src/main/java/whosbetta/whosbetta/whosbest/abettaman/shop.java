@@ -62,8 +62,18 @@ public class shop extends Activity {
         startActivityForResult(intent, REQUEST_CODE);
 
         OurFaceDetectionListener.payment = true;
+
+        Intent intent2 = new Intent(this, FaceStream.class);
+        startActivity(intent2);
     }
 
+
+    public void onFreeHat(View view) {
+        OurFaceDetectionListener.payment = false;
+
+        Intent intent = new Intent(this, FaceStream.class);
+        startActivity(intent);
+    }
 
     private void getToken() {
      //   client.get(SERVER_BASE + "clienttoken", new TextHttpResponseHandler() {

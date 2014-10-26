@@ -125,6 +125,14 @@ public class FaceStream extends Activity implements GestureDetector.OnGestureLis
 //        mBraintree.removeListener(this);
     }
 
+
+    @Override
+    public void onStop() {
+        super.onStop();
+       camera.release();
+    }
+
+
     private Camera getCamera() {
         Camera c = Camera.open();
         return c;
