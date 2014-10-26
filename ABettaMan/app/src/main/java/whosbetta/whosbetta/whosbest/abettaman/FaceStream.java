@@ -3,8 +3,11 @@ package whosbetta.whosbetta.whosbest.abettaman;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,13 +38,17 @@ import static android.widget.AbsoluteLayout.LayoutParams.*;
  * @see SystemUiHider
  */
 @SuppressWarnings("deprecation")
-public class FaceStream extends Activity {
+public class FaceStream extends Activity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener{
 
     public static TextView text;
     private CameraPreview preview;
     private Camera camera;
 
-    private int currentCamera;
+    private int backCamera, frontCamera;
+
+    private OurFaceDetectionListener listener;
+
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +68,17 @@ public class FaceStream extends Activity {
         for (int i = 0; i < numberOfCameras; i++) {
             Camera.getCameraInfo(i, cameraInfo);
             if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                currentCamera = i;
+                backCamera = i;
+            }
+            if(cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                frontCamera = i;
             }
         }
 
-        camera = getCamera();
-        OurFaceDetectionListener listener = new OurFaceDetectionListener(this);
+        gestureDetector = new GestureDetector(this,this);
+
+        camera = Camera.open(backCamera);
+        listener = new OurFaceDetectionListener(this);
         camera.setFaceDetectionListener(listener);
         camera.startFaceDetection();
 
@@ -79,6 +91,11 @@ public class FaceStream extends Activity {
         Log.i("hello", "im here");
         //text = (TextView)findViewById(R.id.textStuff);
         //text.bringToFront();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
     }
 
     @Override
@@ -113,4 +130,59 @@ public class FaceStream extends Activity {
         return c;
     }
 
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+
+//        camera.stopFaceDetection();
+//        camera.stopPreview();
+//
+//        camera.release();
+//
+//        camera.open(frontCamera);
+//        camera.startPreview();
+//        listener = new OurFaceDetectionListener(this);
+//        camera.setFaceDetectionListener(listener);
+//        camera.startFaceDetection();
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float v, float v2) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float v, float v2) {
+        return false;
+    }
 }
