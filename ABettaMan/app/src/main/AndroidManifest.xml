@@ -3,37 +3,48 @@
     package="whosbetta.whosbetta.whosbest.abettaman" >
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <activity android:name="com.braintreepayments.api.dropin.BraintreePaymentActivity" />
-
     <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
     <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
     <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
     <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
 
-    <service android:name="com.paypal.android.sdk.payments.PayPalService" android:exported="false" />
+    <service
+        android:name="com.paypal.android.sdk.payments.PayPalService"
+        android:exported="false" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <activity
             android:name=".FaceStream"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Button"
+            android:label="@string/title_activity_button" >
+        </activity>
+        <activity
+            android:name=".shop"
+            android:label="@string/title_activity_shop" >
         </activity>
     </application>
 

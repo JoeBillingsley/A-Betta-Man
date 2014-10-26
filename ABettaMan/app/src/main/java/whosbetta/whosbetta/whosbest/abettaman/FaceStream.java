@@ -42,7 +42,7 @@ public class FaceStream extends Activity {
     private Camera camera;
 
     private int currentCamera;
-    private static final String SERVER_BASE = "";
+    private static final String SERVER_BASE = "10.8.166.92/ABettaMan/Servlet:8080";
     private static final int REQUEST_CODE = Menu.FIRST;
     private AsyncHttpClient client = new AsyncHttpClient();
     private String clientToken;
@@ -81,9 +81,8 @@ public class FaceStream extends Activity {
         getToken();
     }
 
-    //I have no idea what this does
-//    @Override
-    protected void onActivityResultMethod(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == BraintreePaymentActivity.RESULT_OK) {
             String paymentMethodNonce = data.getStringExtra(BraintreePaymentActivity.EXTRA_PAYMENT_METHOD_NONCE);
             RequestParams requestParams = new RequestParams();
@@ -98,8 +97,7 @@ public class FaceStream extends Activity {
         }
     }
 
-    //I have no idea what this does
-    public void onStartClickMethod(View view){
+    public void onStartClick(View view){
         Customization customization = new Customization.CustomizationBuilder()
                 .primaryDescription("Awesome payment")
                 .secondaryDescription("Using the Client SDK")
@@ -112,7 +110,6 @@ public class FaceStream extends Activity {
         startActivityForResult(intent, REQUEST_CODE);
     }
 
-    //I have no idea what this does
     private void getToken() {
         client.get(SERVER_BASE + "/token", new AsyncHttpResponseHandler() {
             @Override
