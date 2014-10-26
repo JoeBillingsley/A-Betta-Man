@@ -14,6 +14,7 @@ import com.braintreepayments.api.dropin.Customization;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 public class shop extends Activity {
 
@@ -30,7 +31,7 @@ public class shop extends Activity {
         getToken();
 
         Log.i("Well", SERVER_BASE + "clienttoken");
-        Log.i("Woooh", String.valueOf(clientToken == null));
+        Log.i("Wooasdoh", String.valueOf(clientToken == null));
     }
 
     @Override
@@ -63,10 +64,13 @@ public class shop extends Activity {
 
 
     private void getToken() {
-        client.get(SERVER_BASE + "clienttoken", new AsyncHttpResponseHandler() {
+        client.get(SERVER_BASE + "clienttoken", new TextHttpResponseHandler() {
             @Override
             public void onSuccess(String content) {
                 clientToken = content;
+
+                Log.i("asd", "mbc");
+
                 findViewById(R.id.btn_start).setEnabled(true);
             }
         });

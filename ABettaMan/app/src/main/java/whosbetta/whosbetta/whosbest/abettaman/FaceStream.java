@@ -85,6 +85,11 @@ public class FaceStream extends Activity {
     public void onResume() {
         super.onResume();
 
+        //if(camera == null) {
+         //   camera = getCamera();
+         //   camera.open();
+        // }
+
 //        mBraintree.addListener(this);
 //        mBraintree.unlockListeners();
     }
@@ -94,10 +99,10 @@ public class FaceStream extends Activity {
 
         super.onPause();
 
-        if (camera != null) {
-            camera.release();
-            camera = null;
-        }
+        //if (camera != null) {
+         //   camera.release();
+        //    camera = null;
+       // }
 
 //        mBraintree.lockListeners();
 //        mBraintree.removeListener(this);
